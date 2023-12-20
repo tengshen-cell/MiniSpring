@@ -2,6 +2,7 @@ package com.minis.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 滕广银
@@ -12,7 +13,14 @@ public class PropertyValues {
     private final List<PropertyValue> propertyValueList;
 
     public PropertyValues() {
-        this.propertyValueList = new ArrayList<>(0);
+        this.propertyValueList = new ArrayList<PropertyValue>(10);
+    }
+    public PropertyValues(Map<String, Object> map) {
+        this.propertyValueList = new ArrayList<PropertyValue>(10);
+        for (Map.Entry<String,Object> e: map.entrySet()) {
+            PropertyValue pv = new PropertyValue(e.getKey(),e.getValue());
+            this.propertyValueList.add(pv);
+        }
     }
 
     public List<PropertyValue> getPropertyValueList() {
@@ -27,9 +35,6 @@ public class PropertyValues {
         this.propertyValueList.add(pv);
     }
 
-    public void addPropertyValue(String propertyName, Object propertyValue) {
-        addPropertyValue(new PropertyValue(type, propertyName, propertyValue));
-    }
 
     public void removePropertyValue(PropertyValue pv) {
         this.propertyValueList.remove(pv);
@@ -39,8 +44,9 @@ public class PropertyValues {
         this.propertyValueList.remove(getPropertyValue(propertyName));
     }
 
+
     public PropertyValue[] getPropertyValues() {
-        return this.propertyValueList.toArray(new PropertyValue[0]);
+        return this.propertyValueList.toArray(new PropertyValue[this.propertyValueList.size()]);
     }
 
     public PropertyValue getPropertyValue(String propertyName) {
@@ -54,11 +60,11 @@ public class PropertyValues {
 
     public Object get(String propertyName) {
         PropertyValue pv = getPropertyValue(propertyName);
-        return pv != null ? pv.getValue() : null;
+        return (pv != null ? pv.getValue() : null);
     }
 
     public boolean contains(String propertyName) {
-        return getPropertyValue(propertyName) != null;
+        return (getPropertyValue(propertyName) != null);
     }
 
     public boolean isEmpty() {

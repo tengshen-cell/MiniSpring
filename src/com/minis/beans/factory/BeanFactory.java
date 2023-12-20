@@ -1,4 +1,7 @@
-package com.minis.beans;
+package com.minis.beans.factory;
+
+import com.minis.beans.BeanDefinition;
+import com.minis.beans.BeansException;
 
 /**
  * @author 滕广银

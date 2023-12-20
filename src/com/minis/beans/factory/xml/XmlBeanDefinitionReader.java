@@ -1,13 +1,15 @@
-package com.minis.context;
+package com.minis.beans.factory.xml;
 
 import com.minis.beans.BeanDefinition;
 import com.minis.beans.SimpleBeanFactory;
-import com.minis.core.ArgumentValue;
-import com.minis.core.ArgumentValues;
+import com.minis.context.Resource;
+import com.minis.core.ConstructorArgumentValue;
+import com.minis.core.ConstructorArgumentValues;
 import com.minis.core.PropertyValue;
 import com.minis.core.PropertyValues;
 import org.dom4j.Element;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,29 +35,41 @@ public class XmlBeanDefinitionReader {
 
             List<Element> propertyElements = element.elements("property");
             PropertyValues propertyValues = new PropertyValues();
+            List refs = new ArrayList<>();
             for (Element e : propertyElements) {
                 String pType = e.attributeValue("type");
                 String pName = e.attributeValue("name");
                 String pValue = e.attributeValue("value");
-                String ref = e.attributeValue("ref");
-                
-                propertyValues.addPropertyValue(new PropertyValue(pType, pName, pValue));
+                String pRef = e.attributeValue("ref");
+                String pV = "";
+                Boolean isRef = false;
+                if (pValue != null && !pValue.equals("")) {
+                    isRef = false;
+                    pV = pValue;
+                } else if (pRef != null && !pRef.equals("")) {
+                    isRef = true;
+                    pV = pRef;
+                    refs.add(pRef);
+                }
+                propertyValues.addPropertyValue(new PropertyValue(pType, pName, pValue, isRef));
 
             }
             beanDefinition.setPropertyValues(propertyValues);
 
+            String[] refArray = (String[]) refs.toArray(new String[0]);
+            beanDefinition.setDependsOn(refArray);
+
             //处理构造器参数
             List<Element> constructorElements = element.elements("constructor-arg");
-            ArgumentValues AVS = new ArgumentValues();
+            ConstructorArgumentValues AVS = new ConstructorArgumentValues();
             for (Element e : constructorElements) {
                 String aType = e.attributeValue("type");
                 String aName = e.attributeValue("name");
                 String aValue = e.attributeValue("value");
-                AVS.addArgumentValue(new ArgumentValue(aType, aName, aValue));
+                AVS.addArgumentValue(new ConstructorArgumentValue(aType, aName, aValue));
             }
             beanDefinition.setConstructorArgumentValues(AVS);
             this.simpleBeanFactory.registerBeanDefinition(beanID, beanDefinition);
-
 
 
         }

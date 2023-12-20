@@ -1,7 +1,9 @@
 package com.minis.beans;
 
-import com.minis.core.ArgumentValue;
-import com.minis.core.ArgumentValues;
+import com.minis.beans.factory.BeanFactory;
+import com.minis.beans.factory.support.DefaultSingletonBeanRegistry;
+import com.minis.core.ConstructorArgumentValue;
+import com.minis.core.ConstructorArgumentValues;
 import com.minis.core.PropertyValue;
 import com.minis.core.PropertyValues;
 
@@ -51,22 +53,19 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
     private Object createBean(BeanDefinition beanDefinition) {
         Class<?> clz = null;
         Object obj = null;
-        Constructor<?> con = null;
+        Constructor<?> con;
         try {
             clz = Class.forName(beanDefinition.getClassName());
             // 处理构造器参数
-            ArgumentValues argumentValues =
-                    beanDefinition.getConstructorArgumentValues();
+            ConstructorArgumentValues argumentValues = beanDefinition.getConstructorArgumentValues();
             //如果有参数
             if (!argumentValues.isEmpty()) {
                 Class<?>[] paramTypes = new Class<?> [argumentValues.getArgumentCount()];
                 Object[] paramValues = new Object[argumentValues.getArgumentCount()];
                 //对每一个参数，分数据类型分别处理
                 for (int i = 0; i < argumentValues.getArgumentCount(); i++) {
-                    ArgumentValue argumentValue =
-                            argumentValues.getIndexedArgumentValue(i);
-                    if ("String".equals(argumentValue.getType()) ||
-                            "java.lang.String".equals(argumentValue.getType())) {
+                    ConstructorArgumentValue argumentValue = argumentValues.getIndexedArgumentValue(i);
+                    if ("String".equals(argumentValue.getType()) || "java.lang.String".equals(argumentValue.getType())) {
                         paramTypes[i] = String.class;
                         paramValues[i] = argumentValue.getValue();
                     } else if ("Integer".equals(argumentValue.getType()) ||
