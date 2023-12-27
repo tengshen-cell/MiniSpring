@@ -60,7 +60,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
             ConstructorArgumentValues argumentValues = beanDefinition.getConstructorArgumentValues();
             //如果有参数
             if (!argumentValues.isEmpty()) {
-                Class<?>[] paramTypes = new Class<?> [argumentValues.getArgumentCount()];
+                Class<?>[] paramTypes = new Class<?>[argumentValues.getArgumentCount()];
                 Object[] paramValues = new Object[argumentValues.getArgumentCount()];
                 //对每一个参数，分数据类型分别处理
                 for (int i = 0; i < argumentValues.getArgumentCount(); i++) {
@@ -68,11 +68,9 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                     if ("String".equals(argumentValue.getType()) || "java.lang.String".equals(argumentValue.getType())) {
                         paramTypes[i] = String.class;
                         paramValues[i] = argumentValue.getValue();
-                    } else if ("Integer".equals(argumentValue.getType()) ||
-                            "java.lang.Integer".equals(argumentValue.getType())) {
+                    } else if ("Integer".equals(argumentValue.getType()) || "java.lang.Integer".equals(argumentValue.getType())) {
                         paramTypes[i] = Integer.class;
-                        paramValues[i] =
-                                Integer.valueOf((String) argumentValue.getValue());
+                        paramValues[i] = Integer.valueOf((String) argumentValue.getValue());
                     } else if ("int".equals(argumentValue.getType())) {
                         paramTypes[i] = int.class;
                         paramValues[i] = Integer.valueOf((String)
@@ -107,8 +105,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                 Class<?>[] paramTypes = new Class<?>[1];
                 if ("String".equals(pType) || "java.lang.String".equals(pType)) {
                     paramTypes[0] = String.class;
-                } else if ("Integer".equals(pType) ||
-                        "java.lang.Integer".equals(pType)) {
+                } else if ("Integer".equals(pType) || "java.lang.Integer".equals(pType)) {
                     paramTypes[0] = Integer.class;
                 } else if ("int".equals(pType)) {
                     paramTypes[0] = int.class;
@@ -128,6 +125,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
 
                 }
                 try {
+                    assert method != null;
                     method.invoke(obj, paramValues);
                 } catch (Exception e) {
 

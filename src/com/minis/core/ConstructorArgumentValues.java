@@ -8,7 +8,7 @@ import java.util.*;
  * @date 2023/12/14 10:46
  */
 public class ConstructorArgumentValues {
-    private final List<ConstructorArgumentValue> argumentValueList = new ArrayList<ConstructorArgumentValue>();
+    private final List<ConstructorArgumentValue> argumentValueList = new ArrayList<>();
 
     public ConstructorArgumentValues() {
     }
@@ -18,8 +18,7 @@ public class ConstructorArgumentValues {
     }
 
     public ConstructorArgumentValue getIndexedArgumentValue(int index) {
-        ConstructorArgumentValue argumentValue = this.argumentValueList.get(index);
-        return argumentValue;
+        return this.argumentValueList.get(index);
     }
 
     public int getArgumentCount() {
