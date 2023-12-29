@@ -7,17 +7,17 @@ import java.util.*;
  * @description TODO
  * @date 2023/12/14 10:46
  */
-public class ConstructorArgumentValues {
-    private final List<ConstructorArgumentValue> argumentValueList = new ArrayList<>();
+public class ArgumentValues {
+    private final List<ArgumentValue> argumentValueList = new ArrayList<>();
 
-    public ConstructorArgumentValues() {
+    public ArgumentValues() {
     }
 
-    public void addArgumentValue(ConstructorArgumentValue argumentValue) {
+    public void addArgumentValue(ArgumentValue argumentValue) {
         this.argumentValueList.add(argumentValue);
     }
 
-    public ConstructorArgumentValue getIndexedArgumentValue(int index) {
+    public ArgumentValue getIndexedArgumentValue(int index) {
         return this.argumentValueList.get(index);
     }
 

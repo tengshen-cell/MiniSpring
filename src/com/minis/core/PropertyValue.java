@@ -12,35 +12,26 @@ public class PropertyValue {
     private final Object value;
     private final boolean isRef;
 
-    public PropertyValue(String name, String type, Object value, boolean isRef) {
+    public PropertyValue(String type, String name, Object value, boolean isRef) {
+        this.type = type;
         this.name = name;
         this.value = value;
-        this.type = type;
         this.isRef = isRef;
-    }
-
-    public PropertyValue(String type, String name, Object value) {
-        this(type, name, value, false);
-    }
-
-    public PropertyValue(String name, Object value) {
-        this("", name, value,false);
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public Object getValue() {
-        return value;
     }
 
     public String getType() {
         return this.type;
     }
 
-    public Boolean getIsRef() {
+    public String getName() {
+        return this.name;
+    }
+
+    public Object getValue() {
+        return this.value;
+    }
+
+    public boolean getIsRef() {
         return isRef;
     }
 }

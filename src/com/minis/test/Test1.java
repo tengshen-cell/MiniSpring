@@ -9,9 +9,15 @@ import com.minis.context.ClassPathXmlApplicationContext;
  * @date 2023/11/29 11:43
  */
 public class Test1 {
-    public static void main(String[] args) throws BeansException {
+    public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-        AService aService = (AService) ctx.getBean("aservice");
-        aService.sayHello();
+        AService aService;
+        try {
+            aService = (AService) ctx.getBean("aservice");
+            aService.sayHello();
+        } catch (BeansException e) {
+            e.printStackTrace();
+        }
     }
 }
+

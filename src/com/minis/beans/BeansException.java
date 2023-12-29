@@ -7,6 +7,6 @@ package com.minis.beans;
  */
 public class BeansException extends Exception{
     public BeansException(String s) {
-        super();
+        super(s);
     }
 }
