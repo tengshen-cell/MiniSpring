@@ -57,7 +57,6 @@ public class XmlBeanDefinitionReader {
                 String pV = "";
                 boolean isRef = false;
                 if (pValue != null && !pValue.equals("")) {
-                    isRef = false;
                     pV = pValue;
                 } else if (pRef != null && !pRef.equals("")) {
                     isRef = true;
@@ -69,8 +68,6 @@ public class XmlBeanDefinitionReader {
             beanDefinition.setPropertyValues(PVS);
             String[] refArray = refs.toArray(new String[0]);
             beanDefinition.setDependsOn(refArray);
-            //end of handle properties
-
             this.bf.registerBeanDefinition(beanID, beanDefinition);
         }
     }
