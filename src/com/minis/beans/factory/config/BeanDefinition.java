@@ -1,6 +1,5 @@
-package com.minis.beans;
+package com.minis.beans.factory.config;
 
-import com.minis.core.ArgumentValues;
 import com.minis.core.PropertyValues;
 
 /**

@@ -1,6 +1,5 @@
 package com.minis.context;
 
-import com.minis.beans.BeanDefinition;
 import com.minis.beans.factory.BeanFactory;
 import com.minis.beans.BeansException;
 import com.minis.beans.SimpleBeanFactory;

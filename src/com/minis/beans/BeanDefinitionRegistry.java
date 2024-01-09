@@ -1,5 +1,7 @@
 package com.minis.beans;
 
+import com.minis.beans.factory.config.BeanDefinition;
+
 /**
  * @author 滕广银
  * @description TODO

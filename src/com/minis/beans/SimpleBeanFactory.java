@@ -1,9 +1,10 @@
 package com.minis.beans;
 
 import com.minis.beans.factory.BeanFactory;
+import com.minis.beans.factory.config.BeanDefinition;
 import com.minis.beans.factory.support.DefaultSingletonBeanRegistry;
-import com.minis.core.ArgumentValue;
-import com.minis.core.ArgumentValues;
+import com.minis.beans.factory.config.ArgumentValue;
+import com.minis.beans.factory.config.ArgumentValues;
 import com.minis.core.PropertyValue;
 import com.minis.core.PropertyValues;
 
@@ -28,6 +29,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
     private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
     public SimpleBeanFactory() {
+
     }
 
     public void refresh() {
@@ -58,9 +60,6 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                 //step 4 : postProcessAfterInitialization。
             }
 
-        }
-        if (singleton == null) {
-            throw new BeansException("bean is null.");
         }
         return singleton;
     }
@@ -241,7 +240,6 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                 } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
                     e.printStackTrace();
                 }
-
 
             }
         }

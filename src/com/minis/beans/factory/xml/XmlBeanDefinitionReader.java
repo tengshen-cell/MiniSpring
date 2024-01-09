@@ -1,10 +1,10 @@
 package com.minis.beans.factory.xml;
 
-import com.minis.beans.BeanDefinition;
+import com.minis.beans.factory.config.BeanDefinition;
 import com.minis.beans.SimpleBeanFactory;
 import com.minis.context.Resource;
-import com.minis.core.ArgumentValue;
-import com.minis.core.ArgumentValues;
+import com.minis.beans.factory.config.ArgumentValue;
+import com.minis.beans.factory.config.ArgumentValues;
 import com.minis.core.PropertyValue;
 import com.minis.core.PropertyValues;
 import org.dom4j.Element;

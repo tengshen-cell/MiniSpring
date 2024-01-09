@@ -1,4 +1,4 @@
-package com.minis.core;
+package com.minis.beans.factory.config;
 
 /**
  * @author 滕广银
